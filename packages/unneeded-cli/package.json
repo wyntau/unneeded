@@ -1,7 +1,7 @@
 {
-  "name": "@unused/used-typescript",
+  "name": "@unneeded/unneeded-cli",
   "version": "0.0.0",
-  "description": "find imported modules in .ts/.tsx",
+  "description": "cli for unneeded",
   "main": "index.js",
   "author": "Wyntau <wyntau@outlook.com>",
   "license": "MIT"
