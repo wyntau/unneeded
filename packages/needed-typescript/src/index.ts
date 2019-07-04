@@ -34,6 +34,11 @@ export function parse(fileContent: string, options: IOptions = {}): Array<string
           dependency.push((exportDeclaration.moduleSpecifier as ts.StringLiteral).text);
           break;
         }
+        case ts.SyntaxKind.ImportType: {
+          const node = tsNode as ts.ImportTypeNode;
+          dependency.push(((node.argument as ts.LiteralTypeNode).literal as ts.StringLiteral).text);
+          break;
+        }
         case ts.SyntaxKind.CallExpression: {
           const callExpression = tsNode as ts.CallExpression;
           switch (callExpression.expression.kind) {
