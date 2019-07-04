@@ -1,0 +1,8 @@
+{
+  "name": "@unused/unused",
+  "version": "0.0.0",
+  "description": "find unused files",
+  "main": "index.js",
+  "author": "Wyntau <wyntau@outlook.com>",
+  "license": "MIT"
+}
