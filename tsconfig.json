@@ -7,6 +7,10 @@
     "declarationMap": true,
     "esModuleInterop": true,
     "importHelpers": true,
+    "lib": [
+      "dom",
+      "es2015"
+    ],
     "module": "commonjs",
     "moduleResolution": "node",
     "noEmitHelpers": true,
