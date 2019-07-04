@@ -1,0 +1,10 @@
+{
+  "editor.tabSize": 2,
+  "[typescript]": {
+    "editor.formatOnSave": false
+  },
+  "eslint.autoFixOnSave": true,
+  "eslint.validate": [
+    {"language": "typescript", "autoFix": true}
+  ]
+}
