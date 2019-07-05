@@ -1,14 +1,14 @@
 {
   "name": "@unneeded/unneeded",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "find unneeded files",
   "main": "dist/index.js",
   "types": "dist/index.js",
   "author": "Wyntau <wyntau@outlook.com>",
   "license": "MIT",
   "dependencies": {
-    "@unneeded/needed-typescript": "^0.0.2",
-    "@unneeded/needed-vue": "^0.0.2",
+    "@unneeded/needed-typescript": "^0.0.3",
+    "@unneeded/needed-vue": "^0.0.3",
     "enhanced-resolve": "^4.1.0",
     "recursive-readdir": "^2.2.2",
     "tslib": "^1.10.0",
