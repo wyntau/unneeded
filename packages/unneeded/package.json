@@ -8,6 +8,7 @@
   "license": "MIT",
   "dependencies": {
     "@unneeded/needed-typescript": "^0.0.0",
+    "@unneeded/needed-vue": "^0.0.0",
     "enhanced-resolve": "^4.1.0",
     "recursive-readdir": "^2.2.2",
     "tslib": "^1.10.0",

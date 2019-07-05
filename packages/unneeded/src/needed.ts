@@ -1,10 +1,10 @@
-import { parse as neededTypescript } from '@unneeded/needed-typescript';
-import { CachedInputFileSystem, NodeJsInputFileSystem, ResolverFactory } from 'enhanced-resolve';
+import { neededTypescript } from '@unneeded/needed-typescript';
+import { neededVue } from '@unneeded/needed-vue';
 import Resolver from 'enhanced-resolve/lib/Resolver';
-import { parseComponent as vueParseComponent } from 'vue-template-compiler';
 import * as fs from 'fs';
 import * as path from 'path';
 import { IAlias } from '.';
+import * as resolver from './resolver';
 
 export interface INeededOfFileOptions {
   fileAbsolutePath: string;
@@ -20,43 +20,12 @@ export type INeededOfType = (options: INeededOfTypeOptions) => Promise<Array<str
 export async function neededOfTypescript(options: INeededOfTypeOptions) {
   const fileContent = options.fileContent;
   const neededList = neededTypescript(fileContent);
-  let resolver = options.resolver;
-  if (!resolver) {
-    resolver = ResolverFactory.createResolver({
-      // @ts-ignore
-      fileSystem: new CachedInputFileSystem(new NodeJsInputFileSystem(), 4000),
-      alias: options.alias,
-      extensions: options.extensions,
-      modules: [],
-    });
-  }
-
-  const resolvedList: Array<string> = [];
-  const fileDirname = path.dirname(options.fileAbsolutePath);
-
-  for (let i = 0; i < neededList.length; i++) {
-    await new Promise(resolve => {
-      // deprecated warning fix
-      // @ts-ignore
-      resolver!.resolve({}, fileDirname, neededList[i], {}, (err, file) => {
-        if (!err) {
-          resolvedList.push(file);
-        }
-        resolve();
-      });
-    });
-  }
-
-  return resolvedList;
+  return resolver.resolve(neededList, options);
 }
 
 export async function neededOfVue(options: INeededOfTypeOptions): Promise<Array<string>> {
-  const compileResult = vueParseComponent(options.fileContent);
-  if (!compileResult.script || !compileResult.script.content) {
-    return [];
-  }
-
-  return neededOfTypescript({ ...options, fileContent: compileResult.script.content });
+  const neededList = neededVue(options.fileContent);
+  return resolver.resolve(neededList, options);
 }
 
 export async function neededOfFile(
