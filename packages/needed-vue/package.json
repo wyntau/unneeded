@@ -1,12 +1,12 @@
 {
   "name": "@unneeded/needed-vue",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "author": "Wyntau <wyntau@outlook.com>",
   "license": "MIT",
   "dependencies": {
-    "@unneeded/needed-typescript": "^0.0.0",
+    "@unneeded/needed-typescript": "^0.0.1",
     "tslib": "^1.10.0",
     "vue-template-compiler": "^2.6.10"
   },
