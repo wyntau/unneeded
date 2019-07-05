@@ -1,8 +1,54 @@
 {
   "name": "@unneeded/unneeded-cli",
+  "description": "find unneeded files",
   "version": "0.0.0",
-  "description": "cli for unneeded",
-  "main": "index.js",
-  "author": "Wyntau <wyntau@outlook.com>",
-  "license": "MIT"
+  "author": "Wyntau wyntau@outlook.com",
+  "bin": {
+    "unneeded": "./bin/run"
+  },
+  "bugs": "https://github.com/Wyntau/unneeded/issues",
+  "dependencies": {
+    "@oclif/command": "^1",
+    "@oclif/config": "^1",
+    "@oclif/plugin-help": "^2",
+    "@unneeded/unneeded": "^0.0.0",
+    "tslib": "^1"
+  },
+  "devDependencies": {
+    "@oclif/dev-cli": "^1",
+    "@types/node": "^10",
+    "globby": "^8",
+    "ts-node": "^8",
+    "typescript": "^3.3"
+  },
+  "engines": {
+    "node": ">=8.0.0"
+  },
+  "files": [
+    "/bin",
+    "/lib",
+    "/npm-shrinkwrap.json",
+    "/oclif.manifest.json"
+  ],
+  "homepage": "https://github.com/Wyntau/unneeded",
+  "keywords": [
+    "oclif"
+  ],
+  "license": "MIT",
+  "main": "lib/index.js",
+  "oclif": {
+    "commands": "./lib/commands",
+    "bin": "unneeded",
+    "plugins": [
+      "@oclif/plugin-help"
+    ]
+  },
+  "repository": "Wyntau/unneeded",
+  "scripts": {
+    "postpack": "rm -f oclif.manifest.json",
+    "prepack": "rm -rf lib && tsc -b && oclif-dev manifest && oclif-dev readme",
+    "test": "echo NO TESTS",
+    "version": "oclif-dev readme && git add README.md"
+  },
+  "types": "lib/index.d.ts"
 }
