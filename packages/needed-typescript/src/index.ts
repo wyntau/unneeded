@@ -5,7 +5,7 @@ export interface IOptions {
   amd?: boolean;
 }
 
-export function parse(fileContent: string, options: IOptions = {}): Array<string> {
+export function neededTypescript(fileContent: string, options: IOptions = {}): Array<string> {
   options = Object.assign({}, { cjs: true, amd: true }, options);
 
   const sourceFile = ts.createSourceFile(
