@@ -1,4 +1,4 @@
-import { parse } from '..';
+import { neededTypescript } from '..';
 import { describe, it } from 'mocha';
 import { expect } from 'chai';
 
@@ -16,11 +16,16 @@ var abc = require('require');
 
 describe('parse', () => {
   it('should parse es', () => {
-    expect(parse(test, { amd: false, cjs: false })).deep.equal(['import', './importfrom', 'export', 'importtype']);
+    expect(neededTypescript(test, { amd: false, cjs: false })).deep.equal([
+      'import',
+      './importfrom',
+      'export',
+      'importtype',
+    ]);
   });
 
   it('should parse es + amd', () => {
-    expect(parse(test, { amd: true, cjs: false })).deep.equal([
+    expect(neededTypescript(test, { amd: true, cjs: false })).deep.equal([
       'import',
       './importfrom',
       'export',
@@ -31,7 +36,7 @@ describe('parse', () => {
   });
 
   it('should parse es + commonjs', () => {
-    expect(parse(test, { amd: false, cjs: true })).deep.equal([
+    expect(neededTypescript(test, { amd: false, cjs: true })).deep.equal([
       'import',
       './importfrom',
       'export',

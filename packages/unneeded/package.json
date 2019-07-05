@@ -3,7 +3,7 @@
   "version": "0.0.3",
   "description": "find unneeded files",
   "main": "dist/index.js",
-  "types": "dist/index.js",
+  "types": "dist/index.d.ts",
   "author": "Wyntau <wyntau@outlook.com>",
   "license": "MIT",
   "dependencies": {
