@@ -1,7 +1,7 @@
 {
   "name": "@unneeded/unneeded-cli",
   "description": "find unneeded files",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "author": "Wyntau wyntau@outlook.com",
   "bin": {
     "unneeded": "./bin/run"
@@ -11,7 +11,7 @@
     "@oclif/command": "^1",
     "@oclif/config": "^1",
     "@oclif/plugin-help": "^2",
-    "@unneeded/unneeded": "^0.0.1",
+    "@unneeded/unneeded": "^0.0.2",
     "tslib": "^1"
   },
   "devDependencies": {
