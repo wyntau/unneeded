@@ -59,5 +59,7 @@ export async function unneeded(options: IOptions) {
     }
   });
 
-  return Object.keys(allFiles).sort();
+  return Object.keys(allFiles)
+    .sort()
+    .map(item => path.relative(options.context!, item));
 }
