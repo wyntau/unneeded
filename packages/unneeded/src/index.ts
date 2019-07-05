@@ -1,4 +1,6 @@
 import { parse as neededTypescript } from '@unneeded/needed-typescript';
+import { CachedInputFileSystem, NodeJsInputFileSystem, ResolverFactory } from 'enhanced-resolve';
+import Resolver from 'enhanced-resolve/lib/Resolver';
 import * as path from 'path';
 import * as fs from 'fs';
 
@@ -7,55 +9,60 @@ export interface IAlias {
 }
 
 export interface IOptions {
-  cwd?: string;
-  scanning: string | Array<string>;
+  context?: string;
+  audit: string | Array<string>;
   entry: string | Array<string>;
   alias?: IAlias;
   extensions?: Array<string>;
 }
 
-function isAliasImport(module: string, alias: IAlias): boolean {
-  return Object.keys(alias).some(key => module.indexOf(key) === 0);
-}
+let resolver: Resolver;
 
-function parseNeeded(fileAbsolutePath: string, cwd: string, alias: IAlias, extensions: Array<string>): Array<string> {
-  console.log(fileAbsolutePath);
+async function parseNeeded(
+  fileAbsolutePath: string,
+  context: string,
+  alias: IAlias,
+  extensions: Array<string>
+): Promise<Array<string>> {
   const fileContent = fs.readFileSync(fileAbsolutePath, { encoding: 'utf-8' });
+  const neededList = neededTypescript(fileContent);
 
-  const needed = neededTypescript(fileContent);
+  if (!resolver) {
+    const resolvedAlias = Object.keys(alias).reduce((ret, key) => {
+      ret[key] = path.resolve(context, alias[key]);
+      return ret;
+    }, {});
+    resolver = ResolverFactory.createResolver({
+      // @ts-ignore
+      fileSystem: new CachedInputFileSystem(new NodeJsInputFileSystem(), 4000),
+      alias: resolvedAlias,
+      extensions,
+      modules: [],
+    });
+  }
 
-  return needed
-    .filter(item => {
-      return item.indexOf('.') === 0 || isAliasImport(item, alias);
-    })
-    .map(item => {
-      let file;
+  const resolvedList: Array<string> = [];
+  const fileDirname = path.dirname(fileAbsolutePath);
 
-      if (!isAliasImport(item, alias)) {
-        file = path.resolve(path.dirname(fileAbsolutePath), item);
-      } else {
-        const key = Object.keys(alias).find(key => item.indexOf(key) === 0)!;
-        file = path.join(cwd, alias[key], item.replace(key, ''));
-      }
-
-      // console.log(file);
-
-      if (fs.existsSync(file) && fs.statSync(file).isFile()) {
-        return file;
-      }
-
-      for (let i = 0; i < extensions.length; i++) {
-        if (fs.existsSync(file + extensions[i])) {
-          return file + extensions[i];
+  for (let i = 0; i < neededList.length; i++) {
+    await new Promise(resolve => {
+      resolver.resolve({}, fileDirname, neededList[i], (err, file) => {
+        if (err) {
+          resolve();
+          return;
         }
-      }
 
-      return '';
-    })
-    .filter(item => item !== '');
+        resolvedList.push(file);
+        resolve();
+      });
+    });
+  }
+
+  return resolvedList;
 }
 
-export function unneeded(options: IOptions) {
+export async function unneeded(options: IOptions) {
+  console.log('abc');
   options = Object.assign(
     {},
     {
@@ -66,30 +73,26 @@ export function unneeded(options: IOptions) {
     options
   );
 
-  if (!options.entry || !options.scanning) {
+  if (!options.entry || !options.audit) {
     process.exit(1);
     return;
   }
 
   const entry =
     typeof options.entry === 'string'
-      ? [path.join(options.cwd!, options.entry)]
-      : options.entry.map(entry => path.join(options.cwd!, entry));
-  // const scanning = typeof options.scanning === 'string' ? [options.scanning] : options.scanning;
+      ? [path.join(options.context!, options.entry)]
+      : options.entry.map(entry => path.join(options.context!, entry));
 
   const used = entry.slice();
-  // const unused: Array<string> = [];
 
   for (let i = 0; i < used.length; i++) {
-    const needed = parseNeeded(used[i], options.cwd!, options.alias!, options.extensions!);
+    const needed = await parseNeeded(used[i], options.context!, options.alias!, options.extensions!);
     needed.forEach(item => {
       if (used.indexOf(item) < 0) {
         used.push(item);
       }
     });
   }
-
-  // console.log(used);
 
   return used;
 }
