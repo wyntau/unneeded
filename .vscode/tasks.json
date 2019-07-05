@@ -1,0 +1,145 @@
+{
+  // 有关 tasks.json 格式的文档，请参见
+  // https://go.microsoft.com/fwlink/?LinkId=733558
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "watch:needed-typescript",
+      "type": "typescript",
+      "tsconfig": "packages/needed-typescript/tsconfig.json",
+      "option": "watch",
+      "problemMatcher": [
+        "$tsc-watch"
+      ],
+      "presentation": {
+        "echo": true,
+        "reveal": "silent",
+        "focus": false,
+        "panel": "shared",
+        "showReuseMessage": true,
+        "clear": true
+      }
+    },
+    {
+      "label": "watch:needed-vue",
+      "type": "typescript",
+      "tsconfig": "packages/needed-vue/tsconfig.json",
+      "option": "watch",
+      "problemMatcher": [
+        "$tsc-watch"
+      ],
+      "presentation": {
+        "echo": true,
+        "reveal": "silent",
+        "focus": false,
+        "panel": "shared",
+        "showReuseMessage": true,
+        "clear": true
+      }
+    },
+    {
+      "label": "watch:unneeded",
+      "type": "typescript",
+      "tsconfig": "packages/unneeded/tsconfig.json",
+      "option": "watch",
+      "problemMatcher": [
+        "$tsc-watch"
+      ],
+      "presentation": {
+        "echo": true,
+        "reveal": "silent",
+        "focus": false,
+        "panel": "shared",
+        "showReuseMessage": true,
+        "clear": true
+      }
+    },
+    {
+      "label": "watch:all",
+      "group": "build",
+      "dependsOn": [
+        "watch:needed-typescript",
+        "watch:needed-vue",
+        "watch:unneeded"
+      ],
+      "problemMatcher": []
+    },
+    {
+      "label": "build:needed-typescript",
+      "type": "typescript",
+      "tsconfig": "packages/needed-typescript/tsconfig.json",
+      "problemMatcher": [
+        "$tsc"
+      ],
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "shared",
+        "showReuseMessage": true,
+        "clear": true
+      }
+    },
+    {
+      "label": "build:needed-vue",
+      "type": "typescript",
+      "tsconfig": "packages/needed-vue/tsconfig.json",
+      "problemMatcher": [
+        "$tsc"
+      ],
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "shared",
+        "showReuseMessage": true,
+        "clear": true
+      }
+    },
+    {
+      "label": "build:unneeded",
+      "type": "typescript",
+      "tsconfig": "packages/unneeded/tsconfig.json",
+      "problemMatcher": [
+        "$tsc"
+      ],
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "shared",
+        "showReuseMessage": true,
+        "clear": true
+      }
+    },
+    {
+      "label": "build:all",
+      "group": "build",
+      "dependsOn": [
+        "build:needed-typescript",
+        "build:needed-vue",
+        "build:unneeded"
+      ],
+      "dependsOrder": "sequence",
+      "problemMatcher": []
+    },
+    {
+      "label": "clean:all",
+      "group": "build",
+      "command": "rm",
+      "args": [
+        "-rf",
+        "${workspaceRoot}/packages/needed-typescript/dist",
+        "${workspaceRoot}/packages/needed-vue/dist",
+        "${workspaceRoot}/packages/unneeded/dist"
+      ],
+      "problemMatcher": [],
+      "presentation": {
+        "reveal": "silent",
+        "panel": "shared",
+        "showReuseMessage": true,
+        "clear": false
+      }
+    }
+  ]
+}
