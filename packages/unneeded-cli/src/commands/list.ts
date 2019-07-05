@@ -2,11 +2,11 @@ import { Command, flags } from '@oclif/command';
 import { unneeded } from '@unneeded/unneeded';
 
 export default class List extends Command {
-  public static description = 'describe the command here';
+  public static description = 'list all unneeded files';
 
   public static examples = [
-    `$ unneeded list
-list world from ./src/list.ts!
+    `$ unneeded list --entry /path/to/a.js --audit /path/to
+/path/to/b.js
 `,
   ];
 
@@ -30,8 +30,6 @@ list world from ./src/list.ts!
       default: process.cwd(),
     }),
   };
-
-  public static args = [{ name: 'file' }];
 
   public async run() {
     const { flags } = this.parse(List);
