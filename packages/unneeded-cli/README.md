@@ -19,7 +19,7 @@ $ npm install -g @unneeded/unneeded-cli
 $ unneeded COMMAND
 running command...
 $ unneeded (-v|--version|version)
-@unneeded/unneeded-cli/0.0.4 linux-x64 node-v10.15.3
+@unneeded/unneeded-cli/0.0.5 linux-x64 node-v10.15.3
 $ unneeded --help [COMMAND]
 USAGE
   $ unneeded COMMAND
@@ -67,5 +67,5 @@ EXAMPLE
   /path/to/b.js
 ```
 
-_See code: [src/commands/list.ts](https://github.com/Wyntau/unneeded/blob/v0.0.4/src/commands/list.ts)_
+_See code: [src/commands/list.ts](https://github.com/Wyntau/unneeded/blob/v0.0.5/src/commands/list.ts)_
 <!-- commandsstop -->
