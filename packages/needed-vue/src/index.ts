@@ -1,5 +1,6 @@
 import { compile, parseComponent, ASTNode } from 'vue-template-compiler';
 import { neededTypescript } from '@unneeded/needed-typescript';
+import { neededCSSLike } from '@unneeded/needed-csslike';
 
 export function neededVueHtml(fileContent: string): Array<string> {
   const compileResult = compile(fileContent);
@@ -40,6 +41,12 @@ export function neededVue(fileContent: string): Array<string> {
 
   if (parseResult.template && parseResult.template.content) {
     needed = needed.concat(neededVueHtml(parseResult.template.content));
+  }
+
+  if (parseResult.styles && parseResult.styles.length) {
+    parseResult.styles.forEach(style => {
+      needed = needed.concat(neededCSSLike(style.content, style.lang));
+    });
   }
 
   return needed;

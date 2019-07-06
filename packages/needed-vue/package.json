@@ -6,6 +6,7 @@
   "author": "Wyntau <wyntau@outlook.com>",
   "license": "MIT",
   "dependencies": {
+    "@unneeded/needed-csslike": "^0.0.4",
     "@unneeded/needed-typescript": "^0.0.4",
     "tslib": "^1.10.0",
     "vue-template-compiler": "^2.6.10"
