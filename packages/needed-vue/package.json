@@ -17,7 +17,8 @@
     "chai": "^4.2.0",
     "mocha": "^6.1.4",
     "ts-node": "^8.3.0",
-    "typescript": "^3.5.2"
+    "typescript": "^3.5.2",
+    "vue": "^2.6.10"
   },
   "scripts": {
     "test": "mocha -r ts-node/register tests/**/*.test.ts"
