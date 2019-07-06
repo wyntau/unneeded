@@ -38,6 +38,23 @@
       }
     },
     {
+      "label": "watch:needed-csslike",
+      "type": "typescript",
+      "tsconfig": "packages/needed-csslike/tsconfig.json",
+      "option": "watch",
+      "problemMatcher": [
+        "$tsc-watch"
+      ],
+      "presentation": {
+        "echo": true,
+        "reveal": "silent",
+        "focus": false,
+        "panel": "shared",
+        "showReuseMessage": true,
+        "clear": true
+      }
+    },
+    {
       "label": "watch:unneeded",
       "type": "typescript",
       "tsconfig": "packages/unneeded/tsconfig.json",
@@ -60,6 +77,7 @@
       "dependsOn": [
         "watch:needed-typescript",
         "watch:needed-vue",
+        "watch:needed-csslike",
         "watch:unneeded"
       ],
       "problemMatcher": []
@@ -97,6 +115,22 @@
       }
     },
     {
+      "label": "build:needed-csslike",
+      "type": "typescript",
+      "tsconfig": "packages/needed-csslike/tsconfig.json",
+      "problemMatcher": [
+        "$tsc"
+      ],
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "shared",
+        "showReuseMessage": true,
+        "clear": true
+      }
+    },
+    {
       "label": "build:unneeded",
       "type": "typescript",
       "tsconfig": "packages/unneeded/tsconfig.json",
@@ -118,6 +152,7 @@
       "dependsOn": [
         "build:needed-typescript",
         "build:needed-vue",
+        "build:needed-csslike",
         "build:unneeded"
       ],
       "dependsOrder": "sequence",
@@ -131,6 +166,7 @@
         "-rf",
         "${workspaceRoot}/packages/needed-typescript/dist",
         "${workspaceRoot}/packages/needed-vue/dist",
+        "${workspaceRoot}/packages/needed-csslike/dist",
         "${workspaceRoot}/packages/unneeded/dist"
       ],
       "problemMatcher": [],
