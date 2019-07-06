@@ -1,5 +1,6 @@
 import { neededTypescript } from '@unneeded/needed-typescript';
 import { neededVue } from '@unneeded/needed-vue';
+import { neededCSSLike } from '@unneeded/needed-csslike';
 import Resolver from 'enhanced-resolve/lib/Resolver';
 import * as fs from 'fs';
 import * as path from 'path';
@@ -28,6 +29,11 @@ export async function neededOfVue(options: INeededOfTypeOptions): Promise<Array<
   return resolver.resolve(neededList, options);
 }
 
+export async function neededOfCSSLike(options: INeededOfTypeOptions, extname: string): Promise<Array<string>> {
+  const neededList = neededCSSLike(options.fileContent, extname.replace('.', ''));
+  return resolver.resolve(neededList, options);
+}
+
 export async function neededOfFile(
   fileAbsolutePath: string,
   resolvedAlias: IAlias,
@@ -52,6 +58,12 @@ export async function neededOfFile(
       return neededOfTypescript(neededOfTypeOptions);
     case '.vue':
       return neededOfVue(neededOfTypeOptions);
+    case '.css':
+    case '.scss':
+    case '.sass':
+    case '.less':
+    case '.styl':
+      return neededOfCSSLike(neededOfTypeOptions, extname);
     default:
       return [];
   }
