@@ -53,6 +53,17 @@ describe('needed-csslike', () => {
     ]);
   });
 
+  it('ignore URL', () => {
+    expect(
+      neededCSSLike(`
+    body {
+      background-image: url(foo.jpg);
+      background-image: url(https://example.com/asserts/logo.png);
+    }`),
+      'css'
+    ).to.deep.equal(['foo.jpg']);
+  });
+
   // it('type less', () => {
   //   expect(neededCSSLike(cssString, 'less')).to.deep.equal(['./abc.css', './foo.png', 'bar.jpg']);
   // });

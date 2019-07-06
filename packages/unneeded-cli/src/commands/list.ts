@@ -35,6 +35,7 @@ export default class List extends Command {
     const { flags } = this.parse(List);
 
     const unneededFiles = await unneeded({
+      context: flags.context,
       entry: flags.entry,
       audit: flags.audit,
     });

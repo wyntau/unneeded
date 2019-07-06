@@ -4,7 +4,7 @@ import sass from 'sass';
 export function neededCSSLike(fileContent: string, type: string = 'css'): Array<string> {
   switch (type) {
     case 'css':
-      return detectivePostcss(fileContent, { url: true });
+      return detectivePostcss(fileContent, { url: true }).filter(Boolean);
     case 'sass':
     case 'scss':
       let needed: Array<string> = [];
@@ -17,7 +17,7 @@ export function neededCSSLike(fileContent: string, type: string = 'css'): Array<
           };
         },
       });
-      return needed.concat(detectivePostcss(renderResult.css.toString(), { url: true }));
+      return needed.concat(detectivePostcss(renderResult.css.toString(), { url: true })).filter(Boolean);
     default:
       return [];
   }
