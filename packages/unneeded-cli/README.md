@@ -19,7 +19,7 @@ $ npm install -g @unneeded/unneeded-cli
 $ unneeded COMMAND
 running command...
 $ unneeded (-v|--version|version)
-@unneeded/unneeded-cli/0.0.5 linux-x64 node-v10.15.3
+@unneeded/unneeded-cli/0.0.6 linux-x64 node-v10.15.3
 $ unneeded --help [COMMAND]
 USAGE
   $ unneeded COMMAND
@@ -29,7 +29,7 @@ USAGE
 # Commands
 <!-- commands -->
 * [`unneeded help [COMMAND]`](#unneeded-help-command)
-* [`unneeded list`](#unneeded-list)
+* [`unneeded ls`](#unneeded-ls)
 
 ## `unneeded help [COMMAND]`
 
@@ -48,24 +48,24 @@ OPTIONS
 
 _See code: [@oclif/plugin-help](https://github.com/oclif/plugin-help/blob/v2.2.0/src/commands/help.ts)_
 
-## `unneeded list`
+## `unneeded ls`
 
 list all unneeded files
 
 ```
 USAGE
-  $ unneeded list
+  $ unneeded ls
 
 OPTIONS
   -a, --audit=audit      (required) directory to audit
-  -c, --context=context  [default: /mnt/d/Projects/me/unneeded/packages/unneeded-cli] context
+  -c, --context=context  cwd for unneeded, default to current directory
   -e, --entry=entry      (required) entry file
   -h, --help             show CLI help
 
 EXAMPLE
-  $ unneeded list --entry /path/to/a.js --audit /path/to
+  $ unneeded ls --entry /path/to/a.js --audit /path/to
   /path/to/b.js
 ```
 
-_See code: [src/commands/list.ts](https://github.com/Wyntau/unneeded/blob/v0.0.5/src/commands/list.ts)_
+_See code: [src/commands/ls.ts](https://github.com/Wyntau/unneeded/blob/v0.0.6/src/commands/ls.ts)_
 <!-- commandsstop -->
