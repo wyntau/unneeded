@@ -76,8 +76,8 @@
       "group": "build",
       "dependsOn": [
         "watch:needed-typescript",
-        "watch:needed-vue",
         "watch:needed-csslike",
+        "watch:needed-vue",
         "watch:unneeded"
       ],
       "problemMatcher": []
@@ -151,8 +151,8 @@
       "group": "build",
       "dependsOn": [
         "build:needed-typescript",
-        "build:needed-vue",
         "build:needed-csslike",
+        "build:needed-vue",
         "build:unneeded"
       ],
       "dependsOrder": "sequence",
@@ -165,8 +165,8 @@
       "args": [
         "-rf",
         "${workspaceRoot}/packages/needed-typescript/dist",
-        "${workspaceRoot}/packages/needed-vue/dist",
         "${workspaceRoot}/packages/needed-csslike/dist",
+        "${workspaceRoot}/packages/needed-vue/dist",
         "${workspaceRoot}/packages/unneeded/dist"
       ],
       "problemMatcher": [],
