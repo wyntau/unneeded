@@ -1,6 +1,6 @@
 {
   "name": "@unneeded/needed-typescript",
-  "version": "0.0.6",
+  "version": "0.1.0",
   "description": "find imported modules in .ts/.tsx",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
