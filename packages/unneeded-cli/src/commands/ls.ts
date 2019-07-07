@@ -1,11 +1,11 @@
 import { Command, flags } from '@oclif/command';
 import { unneeded } from '@unneeded/unneeded';
 
-export default class List extends Command {
+export default class Ls extends Command {
   public static description = 'list all unneeded files';
 
   public static examples = [
-    `$ unneeded list --entry /path/to/a.js --audit /path/to
+    `$ unneeded ls --entry /path/to/a.js --audit /path/to
 /path/to/b.js
 `,
   ];
@@ -31,7 +31,7 @@ export default class List extends Command {
   };
 
   public async run() {
-    const { flags } = this.parse(List);
+    const { flags } = this.parse(Ls);
 
     const unneededFiles = await unneeded({
       context: flags.context,
