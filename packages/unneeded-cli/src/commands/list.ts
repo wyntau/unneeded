@@ -26,8 +26,7 @@ export default class List extends Command {
     }),
     context: flags.string({
       char: 'c',
-      description: 'context',
-      default: process.cwd(),
+      description: 'cwd for unneeded, default to current directory',
     }),
   };
 
