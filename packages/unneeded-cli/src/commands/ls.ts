@@ -27,6 +27,7 @@ export default class Ls extends Command {
     context: flags.string({
       char: 'c',
       description: 'cwd for unneeded, default to current directory',
+      default: '.',
     }),
   };
 
