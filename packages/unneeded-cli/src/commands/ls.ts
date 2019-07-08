@@ -14,13 +14,13 @@ export default class Ls extends Command {
     help: flags.help({ char: 'h' }),
     entry: flags.string({
       char: 'e',
-      description: 'entry file',
+      description: 'path relative to context of the entry file',
       multiple: true,
       required: true,
     }),
     audit: flags.string({
       char: 'a',
-      description: 'directory to audit',
+      description: 'path relative to context of the directory you want to audit',
       multiple: true,
       required: true,
     }),
