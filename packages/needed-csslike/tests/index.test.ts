@@ -29,25 +29,13 @@ describe('needed-csslike', () => {
     ]);
   });
 
-  it('type sass', () => {
-    expect(neededCSSLike(cssString, 'sass')).to.deep.equal([
-      'scss.scss',
-      'sass.sass',
-      'less.less',
-      'stylus.styl',
-      './abc.css',
-      './foo.png',
-      'bar.jpg',
-    ]);
-  });
-
   it('type scss', () => {
     expect(neededCSSLike(cssString, 'scss')).to.deep.equal([
+      './abc.css',
       'scss.scss',
       'sass.sass',
       'less.less',
       'stylus.styl',
-      './abc.css',
       './foo.png',
       'bar.jpg',
     ]);
