@@ -19,7 +19,7 @@ $ npm install -g @unneeded/unneeded-cli
 $ unneeded COMMAND
 running command...
 $ unneeded (-v|--version|version)
-@unneeded/unneeded-cli/0.1.1 darwin-x64 node-v10.15.3
+@unneeded/unneeded-cli/0.1.2 darwin-x64 node-v10.16.0
 $ unneeded --help [COMMAND]
 USAGE
   $ unneeded COMMAND
@@ -57,9 +57,9 @@ USAGE
   $ unneeded ls
 
 OPTIONS
-  -a, --audit=audit      (required) directory to audit
+  -a, --audit=audit      (required) path relative to context of the directory you want to audit
   -c, --context=context  [default: .] cwd for unneeded, default to current directory
-  -e, --entry=entry      (required) entry file
+  -e, --entry=entry      (required) path relative to context of the entry file
   -h, --help             show CLI help
 
 EXAMPLE
@@ -67,5 +67,5 @@ EXAMPLE
   /path/to/b.js
 ```
 
-_See code: [src/commands/ls.ts](https://github.com/Wyntau/unneeded/blob/v0.1.1/src/commands/ls.ts)_
+_See code: [src/commands/ls.ts](https://github.com/Wyntau/unneeded/blob/v0.1.2/src/commands/ls.ts)_
 <!-- commandsstop -->
