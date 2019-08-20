@@ -4,6 +4,7 @@ export function neededCSSLike(fileContent: string, type: string = 'css'): Array<
   switch (type) {
     case 'css':
     case 'scss':
+    case 'sass':
     case 'less':
       const parseTree = gonzales.parse(fileContent, { syntax: type });
       const needed: Array<string> = [];
